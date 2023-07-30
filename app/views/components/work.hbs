@@ -1,27 +1,54 @@
 {{#if resume.work.length}}
 <div class="container work-container">
-  {{> title value="Experience"}}
+    {{> title value="Experience"}}
 
-  {{#each resume.work}}
-  <section class="item">
-    {{> section-header name=this.company }}
-
-    {{#if position}}
-      <h4>{{position}}</h4>
+    {{#each resume.work}}
+        <section class="item">
+<div class="clearfix">
+                {{#if name}}
+    <h3 class="bold pull-left">
+        {{#if website}}
+            <a href="{{website}}" target="_blank">
+                {{name}} <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+        {{else}}
+            {{name}}
+        {{/if}}
+    </h3>
+<br style="clear:both" />
     {{/if}}
 
-    {{#if summary}}
-      <p class="summary">{{summary}}</p>
-    {{/if}}
+            {{#if position}}
+            <h4 class="italic pull-left">{{position}}</h4>
+            {{/if}}
 
-    {{#if highlights.length}}
-      <ul>
-        {{#each highlights}}
-        <li>{{.}}</li>
-        {{/each}}
-      </ul>
-    {{/if}}
-  </section>
-  {{/each}}
+    <h5 class="italic pull-right">
+        {{#if startDate}}
+            <span class="startDate">{{formatDate startDate}}</span>
+            {{#if endDate}}
+            <span class="endDate"> - {{formatDate endDate}}</span>
+            {{else}}
+            <span class="endDate"> - Present</span>
+            {{/if}}
+        {{else if releaseDate}}
+            {{formatDate releaseDate}}
+        {{/if}}
+    </h5>
+
+</div>
+
+            {{#if summary}}
+            <p class="summary">{{{summary}}}</p>
+            {{/if}}
+
+            {{#if highlights.length}}
+            <ul>
+                {{#each highlights}}
+                <li>{{{.}}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </section>
+    {{/each}}
 </div>
 {{/if}}
